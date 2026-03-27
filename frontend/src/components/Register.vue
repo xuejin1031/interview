@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'Register',
+  name: 'AppRegister',
   data() {
     return {
       userName: '',

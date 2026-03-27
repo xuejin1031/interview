@@ -1,0 +1,14 @@
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/SocialMediaApplication.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/config/WebConfig.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/controller/CommentController.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/controller/PostController.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/controller/UserController.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/entity/Comment.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/entity/Post.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/entity/User.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/repository/CommentRepository.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/repository/PostRepository.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/repository/UserRepository.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/service/CommentService.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/service/PostService.java
+/workspaces/interview/backend/src/main/java/com/example/socialmedia/service/UserService.java
