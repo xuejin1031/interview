@@ -1,8 +1,10 @@
 <template>
   <div class="comment-form">
-    <form @submit.prevent="createComment">
-      <input v-model="content" type="text" placeholder="新增留言..." required>
-      <button type="submit">留言</button>
+    <form @submit.prevent="createComment" class="form">
+      <div class="form-group">
+        <input v-model="content" type="text" placeholder="新增留言..." required class="form-input">
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm">留言</button>
     </form>
   </div>
 </template>
@@ -44,15 +46,56 @@ export default {
 
 <style scoped>
 .comment-form {
-  margin-top: 10px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
 }
 
-input {
-  width: 70%;
-  padding: 5px;
+.form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-button {
-  padding: 5px 10px;
+.form-group {
+  flex: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
 }
 </style>

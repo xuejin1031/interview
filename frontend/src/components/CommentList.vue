@@ -1,8 +1,11 @@
 <template>
   <div class="comment-list">
     <div v-for="comment in comments" :key="comment.id" class="comment">
-      <p><strong>{{ comment.userId }}</strong>: {{ comment.content }}</p>
-      <small>{{ new Date(comment.createdAt).toLocaleString() }}</small>
+      <div class="comment-header">
+        <strong class="comment-author">{{ comment.userId }}</strong>
+        <small class="comment-date">{{ new Date(comment.createdAt).toLocaleString() }}</small>
+      </div>
+      <p class="comment-content">{{ comment.content }}</p>
     </div>
   </div>
 </template>
@@ -38,10 +41,37 @@ export default {
 </script>
 
 <style scoped>
+.comment-list {
+  margin-top: 1rem;
+}
+
 .comment {
-  border-left: 2px solid #ccc;
-  padding-left: 10px;
-  margin: 5px 0;
-  text-align: left;
+  background: #f8f9fa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid #007bff;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.comment-author {
+  font-size: 0.9rem;
+  color: #007bff;
+}
+
+.comment-date {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.comment-content {
+  margin: 0;
+  line-height: 1.4;
 }
 </style>

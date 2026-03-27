@@ -1,14 +1,28 @@
 <template>
   <div class="modal">
     <div class="modal-content">
-      <h2>註冊</h2>
-      <form @submit.prevent="register">
-        <input v-model="userName" type="text" placeholder="使用者名稱" required>
-        <input v-model="email" type="email" placeholder="電子郵件" required>
-        <input v-model="password" type="password" placeholder="密碼" required>
-        <textarea v-model="biography" placeholder="自我介紹"></textarea>
-        <button type="submit">註冊</button>
-        <button type="button" @click="$emit('close')">取消</button>
+      <h2 class="modal-title">註冊</h2>
+      <form @submit.prevent="register" class="form">
+        <div class="form-group">
+          <label for="userName">使用者名稱</label>
+          <input id="userName" v-model="userName" type="text" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="email">電子郵件</label>
+          <input id="email" v-model="email" type="email" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="password">密碼</label>
+          <input id="password" v-model="password" type="password" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="biography">自我介紹</label>
+          <textarea id="biography" v-model="biography" class="form-textarea"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">註冊</button>
+          <button type="button" class="btn btn-secondary" @click="$emit('close')">取消</button>
+        </div>
       </form>
     </div>
   </div>
@@ -65,22 +79,92 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
   background: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  max-width: 400px;
+  width: 90%;
 }
 
-input {
+.modal-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-weight: 300;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
   display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 200px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
 }
 
-button {
-  margin: 10px 5px;
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
 }
 </style>
