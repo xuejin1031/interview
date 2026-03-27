@@ -15,8 +15,8 @@ public class PostService {
     private PostRepository postRepository;
 
     @Transactional
-    public void createPost(Long userId, String content) {
-        postRepository.createPost(userId, content);
+    public void createPost(Long userId, String content, String image) {
+        postRepository.createPost(userId, content, image);
     }
 
     public List<Object[]> getAllPosts() {
@@ -24,12 +24,12 @@ public class PostService {
     }
 
     @Transactional
-    public void updatePost(Long id, String content) {
-        postRepository.updatePost(id, content);
+    public void updatePost(Long postId, String content, String image) {
+        postRepository.updatePost(postId, content, image);
     }
 
     @Transactional
-    public void deletePost(Long id) {
-        postRepository.deletePost(id);
+    public void deletePost(Long postId) {
+        postRepository.deletePost(postId);
     }
 }

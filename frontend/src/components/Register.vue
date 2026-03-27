@@ -3,8 +3,10 @@
     <div class="modal-content">
       <h2>註冊</h2>
       <form @submit.prevent="register">
-        <input v-model="phoneNumber" type="text" placeholder="手機號碼" required>
+        <input v-model="userName" type="text" placeholder="使用者名稱" required>
+        <input v-model="email" type="email" placeholder="電子郵件" required>
         <input v-model="password" type="password" placeholder="密碼" required>
+        <textarea v-model="biography" placeholder="自我介紹"></textarea>
         <button type="submit">註冊</button>
         <button type="button" @click="$emit('close')">取消</button>
       </form>
@@ -17,8 +19,10 @@ export default {
   name: 'Register',
   data() {
     return {
-      phoneNumber: '',
-      password: ''
+      userName: '',
+      email: '',
+      password: '',
+      biography: ''
     }
   },
   methods: {
@@ -30,13 +34,15 @@ export default {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            phoneNumber: this.phoneNumber,
-            password: this.password
+            userName: this.userName,
+            email: this.email,
+            password: this.password,
+            biography: this.biography
           })
         });
         const data = await response.json();
         if (response.ok) {
-          this.$emit('register', { phoneNumber: this.phoneNumber });
+          this.$emit('register', { userName: this.userName, email: this.email });
         } else {
           alert(data.message);
         }

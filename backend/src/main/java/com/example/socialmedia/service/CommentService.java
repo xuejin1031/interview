@@ -22,4 +22,8 @@ public class CommentService {
     public List<Comment> getCommentsByPostId(Long postId) {
         return commentRepository.findByPostId(postId);
     }
+
+    public List<Object[]> getCommentsByPost(Long postId) {
+        return commentRepository.getCommentsByPost(postId);
+    }
 }

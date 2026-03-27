@@ -11,14 +11,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByUserId(Long userId);
 
     @Procedure(name = "create_post")
-    void createPost(@Param("p_user_id") Long userId, @Param("p_content") String content);
+    void createPost(@Param("p_user_id") Long userId, @Param("p_content") String content, @Param("p_image") String image);
 
     @Procedure(name = "get_all_posts")
     List<Object[]> getAllPosts();
 
     @Procedure(name = "update_post")
-    void updatePost(@Param("p_id") Long id, @Param("p_content") String content);
+    void updatePost(@Param("p_post_id") Long postId, @Param("p_content") String content, @Param("p_image") String image);
 
     @Procedure(name = "delete_post")
-    void deletePost(@Param("p_id") Long id);
+    void deletePost(@Param("p_post_id") Long postId);
 }

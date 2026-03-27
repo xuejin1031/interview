@@ -2,8 +2,9 @@
   <div class="post-list">
     <h3>所有發文</h3>
     <div v-for="post in posts" :key="post[0]" class="post">
-      <p><strong>{{ post[4] }}</strong>: {{ post[1] }}</p>
-      <small>{{ new Date(post[2]).toLocaleString() }}</small>
+      <p><strong>{{ post[4] }} ({{ post[5] }})</strong>: {{ post[1] }}</p>
+      <img v-if="post[2]" :src="post[2]" alt="Post image" style="max-width: 200px;">
+      <small>{{ new Date(post[3]).toLocaleString() }}</small>
       <div v-if="canEdit(post)">
         <button @click="editPost(post)">編輯</button>
         <button @click="deletePost(post[0])">刪除</button>
@@ -27,22 +28,23 @@ export default {
   props: ['posts'],
   methods: {
     canEdit(post) {
-      return this.$root.currentUser && this.$root.currentUser.phoneNumber === post[4];
+      return this.$root.currentUser && this.$root.currentUser.email === post[5];
     },
     editPost(post) {
       const newContent = prompt('編輯內容:', post[1]);
-      if (newContent) {
-        this.updatePost(post[0], newContent);
+      const newImage = prompt('編輯圖片 URL:', post[2] || '');
+      if (newContent !== null) {
+        this.updatePost(post[0], newContent, newImage);
       }
     },
-    async updatePost(id, content) {
+    async updatePost(id, content, image) {
       try {
         const response = await fetch(`http://localhost:8080/api/posts/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ content })
+          body: JSON.stringify({ content, image })
         });
         if (response.ok) {
           this.$emit('post-updated');

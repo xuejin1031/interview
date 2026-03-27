@@ -12,4 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Procedure(name = "create_comment")
     void createComment(@Param("p_post_id") Long postId, @Param("p_user_id") Long userId, @Param("p_content") String content);
+
+    @Procedure(name = "get_comments_by_post")
+    List<Object[]> getCommentsByPost(@Param("p_post_id") Long postId);
 }

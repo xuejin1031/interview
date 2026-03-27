@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByPhoneNumber(String phoneNumber);
+    User findByEmail(String email);
 
     @Procedure(name = "register_user")
-    void registerUser(@Param("p_phone") String phone, @Param("p_password") String password);
+    void registerUser(@Param("p_user_name") String userName, @Param("p_email") String email, @Param("p_password") String password, @Param("p_biography") String biography);
 
     @Procedure(name = "login_user")
-    Long loginUser(@Param("p_phone") String phone, @Param("p_password") String password);
+    Long loginUser(@Param("p_email") String email, @Param("p_password") String password);
 }

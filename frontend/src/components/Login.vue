@@ -3,7 +3,7 @@
     <div class="modal-content">
       <h2>登入</h2>
       <form @submit.prevent="login">
-        <input v-model="phoneNumber" type="text" placeholder="手機號碼" required>
+        <input v-model="email" type="email" placeholder="電子郵件" required>
         <input v-model="password" type="password" placeholder="密碼" required>
         <button type="submit">登入</button>
         <button type="button" @click="$emit('close')">取消</button>
@@ -17,7 +17,7 @@ export default {
   name: 'Login',
   data() {
     return {
-      phoneNumber: '',
+      email: '',
       password: ''
     }
   },
@@ -30,13 +30,13 @@ export default {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            phoneNumber: this.phoneNumber,
+            email: this.email,
             password: this.password
           })
         });
         const data = await response.json();
         if (response.ok) {
-          this.$emit('login', { id: data.userId, phoneNumber: this.phoneNumber });
+          this.$emit('login', { id: data.userId, email: this.email, userName: 'User' }); // 簡化，實際應從後端獲取
         } else {
           alert(data.message);
         }

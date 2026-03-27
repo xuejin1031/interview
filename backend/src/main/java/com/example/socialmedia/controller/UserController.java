@@ -17,9 +17,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> request) {
-        String phoneNumber = request.get("phoneNumber");
+        String userName = request.get("userName");
+        String email = request.get("email");
         String password = request.get("password");
-        userService.registerUser(phoneNumber, password);
+        String biography = request.get("biography");
+        userService.registerUser(userName, email, password, biography);
         Map<String, String> response = new HashMap<>();
         response.put("message", "User registered successfully");
         return ResponseEntity.ok(response);
@@ -27,9 +29,9 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> request) {
-        String phoneNumber = request.get("phoneNumber");
+        String email = request.get("email");
         String password = request.get("password");
-        Long userId = userService.loginUser(phoneNumber, password);
+        Long userId = userService.loginUser(email, password);
         Map<String, Object> response = new HashMap<>();
         if (userId != null) {
             response.put("userId", userId);

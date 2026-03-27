@@ -3,6 +3,7 @@
     <h3>新增發文</h3>
     <form @submit.prevent="createPost">
       <textarea v-model="content" placeholder="輸入內容..." required></textarea>
+      <input v-model="image" type="text" placeholder="圖片 URL (選填)">
       <button type="submit">發佈</button>
     </form>
   </div>
@@ -13,7 +14,8 @@ export default {
   name: 'PostForm',
   data() {
     return {
-      content: ''
+      content: '',
+      image: ''
     }
   },
   methods: {
@@ -26,11 +28,13 @@ export default {
           },
           body: JSON.stringify({
             userId: this.$root.currentUser.id,
-            content: this.content
+            content: this.content,
+            image: this.image
           })
         });
         if (response.ok) {
           this.content = '';
+          this.image = '';
           this.$emit('post-created');
         } else {
           alert('發佈失敗');

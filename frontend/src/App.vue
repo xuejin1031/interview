@@ -7,7 +7,7 @@
         <button @click="showRegister = true">註冊</button>
       </div>
       <div v-else>
-        <span>歡迎, {{ currentUser.phoneNumber }}</span>
+        <span>歡迎, {{ currentUser.userName }} ({{ currentUser.email }})</span>
         <button @click="logout">登出</button>
       </div>
     </header>
